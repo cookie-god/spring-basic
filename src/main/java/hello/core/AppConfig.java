@@ -15,7 +15,7 @@ public class AppConfig {
   @Bean // 스프링 컨테이너에 등록함
   public MemberService memberService() {
     return new MemberServiceImpl(memberRepository());
-  }
+  } // memberRepository에 의존
 
   @Bean
   public MemoryMemberRepository memberRepository() {
@@ -24,7 +24,7 @@ public class AppConfig {
 
   @Bean
   public OrderService orderService() {
-    return new OrderServiceImpl(memberRepository(), discountPolicy());
+    return new OrderServiceImpl(memberRepository(), discountPolicy()); // memberRepository, discountPolicy에 의존
   }
 
   @Bean
