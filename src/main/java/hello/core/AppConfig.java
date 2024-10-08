@@ -12,18 +12,25 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration // 설정정보를 뜻함
 public class AppConfig {
+
+  // @Bean memberService -> new MemoryMemberRepository()
+  // @Bean orderService -> new MemoryMemberRepository()
+
   @Bean // 스프링 컨테이너에 등록함
   public MemberService memberService() {
+    System.out.println("call AppConfig.memberService");
     return new MemberServiceImpl(memberRepository());
   } // memberRepository에 의존
 
   @Bean
   public MemoryMemberRepository memberRepository() {
+    System.out.println("call AppConfig.memberRepository");
     return new MemoryMemberRepository();
   }
 
   @Bean
   public OrderService orderService() {
+    System.out.println("call AppConfig.orderService");
     return new OrderServiceImpl(memberRepository(), discountPolicy()); // memberRepository, discountPolicy에 의존
   }
 
